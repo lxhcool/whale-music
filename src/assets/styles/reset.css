@@ -1,5 +1,6 @@
-@import "~normalize.css";
-@import "./iconfont.css";
+@import '~normalize.css';
+@import './iconfont.css';
+@import '~antd/dist/antd.css';
 
 /* ==========================================================================
 Base styles: opinionated defaults
@@ -66,7 +67,7 @@ input,
 select,
 textarea {
   font-family: PingFang SC, Arial, Microsoft YaHei, sans-serif;
-  color: #4a4a4a;
+  color: #2f3447;
 }
 
 h1 {
@@ -107,7 +108,7 @@ li {
 
 a {
   text-decoration: none;
-  color: #161e27;
+  color: #2f3447;
 }
 
 abbr[title],

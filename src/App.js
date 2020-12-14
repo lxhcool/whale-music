@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { renderRoutes } from 'react-router-config';
-
 import routes from '@/router';
 
 import AppHeader from '@/components/header';
@@ -10,11 +9,13 @@ import { HashRouter } from 'react-router-dom';
 
 const App = memo(() => {
   return (
-    <HashRouter>
-      <AppHeader />
-      {renderRoutes(routes)}
-      <AppFooter />
-    </HashRouter>
+    <div>
+      <HashRouter>
+        <AppHeader />
+        {renderRoutes(routes)}
+        <AppFooter />
+      </HashRouter>
+    </div>
   );
 });
 
