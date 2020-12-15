@@ -1,9 +1,11 @@
 import React, { memo } from 'react';
 
+import Banner from '@/components/banner';
+
 const Home = memo(() => {
   return (
-    <div>
-      <h2>Home</h2>
+    <div className="container">
+      <Banner />
     </div>
   );
 });

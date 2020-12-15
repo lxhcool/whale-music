@@ -1,0 +1,344 @@
+@import '~normalize.css';
+@import '~antd/dist/antd.css';
+
+/* ==========================================================================
+Base styles: opinionated defaults
+========================================================================== */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+fieldset,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 13px;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  // font-family: PingFang SC, Arial, Microsoft YaHei, sans-serif;
+  color: #15151b;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+
+small {
+  font-size: 12px;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #15151b;
+}
+
+abbr[title],
+acronym[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+q:before,
+q:after {
+  content: '';
+}
+
+legend {
+  color: #000;
+}
+
+fieldset,
+img {
+  border: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  border-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  outline: none;
+  border: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.unselectable {
+  user-select: none;
+}
+
+hr {
+  border: none;
+  height: 1px;
+}
+
+/*—滚动条默认显示样式–*/
+
+// ::-webkit-scrollbar {
+//   width: 0px;
+//   height: 8px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background: #ababab;
+//   border-radius: 10px;
+// }
+
+// ::-webkit-scrollbar-track {
+//   border-radius: 10px;
+//   background-color: #fff;
+// }
+
+/* common */
+
+.app-layout {
+  padding-top: 74px;
+  width: 100%;
+  min-height: calc(100vh - 252px);
+  z-index: 998;
+  width: auto;
+  min-width: 1024px;
+}
+
+.container {
+  max-width: 1380px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* flex */
+
+.flex-layout {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 过渡 */
+
+.transition {
+  transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+/* margin */
+.mr5 {
+  margin-right: 5px;
+}
+
+/* 文字控制显示 */
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis-two {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+/* shadow */
+.shadow {
+  background-color: #FFFFFF;
+  /* -webkit-box-shadow: 0px 5px 40px -1px rgba(2, 10, 18, 0.1);
+  box-shadow: 0px 5px 40px -1px rgba(2, 10, 18, 0.1); */
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+
+.layer {
+  position: relative;
+}
+
+.layer:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #8A2387;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #F27121, #E94057, #8A2387);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #F27121, #E94057, #8A2387); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  opacity: 0.3;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes tips-open {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50px, 0);
+    transform: translate3d(0, 50px, 0)
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+  }
+}
+@keyframes tips-close {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50px, 0);
+    transform: translate3d(0, 50px, 0)
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+      transform: translateY(25px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
+@keyframes play {
+	0% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0)
+	}
+
+	to {
+		-webkit-transform: translateY(85%);
+		transform: translateY(85%)
+	}
+}
+
+@keyframes turn{
+  0%{-webkit-transform:rotate(0deg);}
+  25%{-webkit-transform:rotate(90deg);}
+  50%{-webkit-transform:rotate(180deg);}
+  75%{-webkit-transform:rotate(270deg);}
+  100%{-webkit-transform:rotate(360deg);}
+}

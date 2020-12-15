@@ -1,21 +1,31 @@
 import React, { memo } from 'react';
+import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import routes from '@/router';
+import store from '@/store';
 
 import AppHeader from '@/components/header';
 import AppFooter from '@/components/footer';
 import { HashRouter } from 'react-router-dom';
 
+import { BackTop } from 'antd';
+import gotopImg  from '@/assets/images/gotop.png';
+
 
 const App = memo(() => {
   return (
-    <div>
+    <Provider store={store}>
       <HashRouter>
         <AppHeader />
-        {renderRoutes(routes)}
+        <div className="app-layout">
+          {renderRoutes(routes)}
+        </div>
         <AppFooter />
       </HashRouter>
-    </div>
+      <BackTop visibilityHeight={300} duration={800}>
+        <img src={gotopImg} alt=""/>
+      </BackTop>
+    </Provider>
   );
 });
 
