@@ -7,16 +7,23 @@ const instance = axios.create({
   timeout: TIMEOUT
 })
 
+// 请求拦截器
 instance.interceptors.request.use(config => {
   return config;
 }, err => {
   console.log(err);
+  return Promise.reject(err)
 })
 
-instance.interceptors.response.use(res => {
-  return res.data;
+// 响应拦截器即异常处理
+instance.interceptors.response.use(response => {
+  let status = response.status
+  let data = response.data  
+  if (status === 200) {
+    return Promise.resolve(data)
+  }
 }, err => {
-  console.log(err);
+  return Promise.reject(err)
 })
 
 export default instance;

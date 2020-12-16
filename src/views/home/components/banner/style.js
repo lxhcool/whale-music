@@ -25,8 +25,7 @@ export const BannerWrapper = styled.div`
     background: #fa2800;
   }
   img {
-    width: 430px;
-    border-radius: 3px;
+    /* width: 430px; */
+    border-radius: 4px;
   }
-
 `
