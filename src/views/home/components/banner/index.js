@@ -34,18 +34,22 @@ const Banner = memo(() => {
   }, [dispatch])
 
   return (
-    <BannerWrapper className="banner">
-      <Swiper {...params} pagination={{ clickable: true }}>
-        {
-          banners.map(item => {
-            return (
-              <SwiperSlide key={item.scm}>
-                <img src={item.imageUrl} alt={item.typeTitle} title={item.typeTitle} />
-              </SwiperSlide>
-            )
-          })
-        }
-      </Swiper>
+    <BannerWrapper className="banner-wrap">
+      {
+       banners.length > 0 &&
+        <Swiper {...params} pagination={{ clickable: true }}>
+          {
+            banners.map(item => {
+              return (
+                <SwiperSlide key={item.scm}>
+                  <img src={item.imageUrl} alt={item.typeTitle} title={item.typeTitle} />
+                </SwiperSlide>
+              )
+            })
+          }
+        </Swiper>
+      }
+      
     </BannerWrapper>
   );
 });
