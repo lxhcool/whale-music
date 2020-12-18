@@ -2,8 +2,8 @@
 body.light-mode {
   background: $light;
   color: $dark;
-  a {
-    color: $dark;
+  a, h1, h2, h3, h4, h5, h6 {
+    color: $light-color;
   }
   .header {
     background: $light;
@@ -31,12 +31,19 @@ body.light-mode {
       background: rgba(120, 129, 147, .25);
     }
   }
+  .song-sheet {
+    .wrapper {
+      &:before, &:after {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
 }
 // dark theme
 body.dark-mode {
   background: $dark;
   color: rgba(255, 255, 255, 0.9);
-  a {
+  a, h1, h2, h3, h4, h5, h6 {
     color: $light;
   }
   .header {
@@ -64,6 +71,13 @@ body.dark-mode {
     }
     .overlay {
       background: rgba(29, 31, 32, 0.25);
+    }
+  }
+  .song-sheet {
+    .wrapper {
+      &:before, &:after {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
     }
   }
 }

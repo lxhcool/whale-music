@@ -191,10 +191,10 @@ hr {
 }
 
 .container {
-  max-width: 1380px;
+  max-width: 1280px;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -249,6 +249,7 @@ hr {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 700;
 }
 
 .ellipsis-two {

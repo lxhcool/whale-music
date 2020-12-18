@@ -3,7 +3,7 @@ import http from '../http';
 // 获取 banner( 轮播图 )
 export function getBanners() {
   return http({
-    url: "banner"
+    url: "/banner"
   })
 }
 
@@ -14,5 +14,12 @@ export function getRecommends(limit) {
     params: {
       limit
     }
+  })
+}
+
+// 获取新碟上架
+export function getNewAlbums() {
+  return http({
+    url: "/album/newest",
   })
 }

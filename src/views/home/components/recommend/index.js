@@ -1,14 +1,13 @@
 import React, { memo, useEffect } from 'react';
-import { tranNumber } from "@/utils/utils"
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import SongSheet from '@/components/song-sheet'
 import { getRecommendAction } from '../../store/actionCreators';
-import { Skeleton, Space } from 'antd';
 
 import {
   RecommendWrapper
 } from './style';
 
-const Recommend = memo(() => {
+const RecommendSheet = memo(() => {
   // 获取数据
   const { recommends } = useSelector(state => ({
     recommends: state.getIn(["home", "recommends"])
@@ -19,30 +18,13 @@ const Recommend = memo(() => {
   useEffect(() => {
     dispatch(getRecommendAction(24))
   }, [dispatch])
-  const items = []
-  for(let i = 0; i < 24; i++) {
-    items.push(<Skeleton.Avatar style={{ width: 140.5, height: 140.5 }}  active={true} size="default" shape="square" />)
-  }
+  
   return (
-    <RecommendWrapper className="recommend-wrap">
-      {
-        recommends.length > 0 ?
-        <div>
-          {
-            recommends.map(item => {
-              return(
-                <div key={item.id}>{tranNumber(item.playCount)}</div>
-              )
-            })
-          }
-        </div>
-        :
-        <Space>
-          {items}       
-        </Space>
-      }
+    <RecommendWrapper className="recommend-sheet">
+      <h2 className="title">推荐歌单</h2>
+      <SongSheet list={ recommends } />
     </RecommendWrapper>
   );
 });
 
-export default Recommend;
+export default RecommendSheet;

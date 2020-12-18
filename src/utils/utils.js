@@ -6,7 +6,6 @@
 
 export const tranNumber = (num, point = 0) => {
   let numStr = num.toString()
-  console.log(numStr)
   // 十万以内直接返回
   if (numStr.length < 6) {
     return numStr
@@ -27,4 +26,14 @@ export const tranNumber = (num, point = 0) => {
     )
     return parseFloat(parseInt(num / 10000) + '.' + decimal) + '万'
   }
+}
+
+// 设置图片大小
+export const imageSize = (imgUrl, size = 140)  => {
+  return `${imgUrl}?param=${size}y${size}`
+}
+
+// 设置图片模糊
+export const imageBlur = (imgUrl)  => {
+  return `${imgUrl}?param=80y80&imageView&blur=40x20`
 }

@@ -4,7 +4,9 @@ import * as actionTypes from './actionTypes'
 
 const defaultState = Map({
   banners: [],
-  recommends: []
+  recommends: [],
+  albums: [],
+  singers: []
 })
 
 function reducer(state = defaultState, action) {
@@ -13,6 +15,8 @@ function reducer(state = defaultState, action) {
       return state.set("banners", action.banners)
     case actionTypes.GET_RECOMMENDS:
       return state.set("recommends", action.recommends)
+    case actionTypes.GET_ALBUMS:
+      return state.set("albums", action.albums)
     default:
       return state
   }
