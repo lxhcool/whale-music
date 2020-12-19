@@ -1,3 +1,9 @@
+// 补0方法
+export const formatZero = (num, len) => {
+  if (String(num).length > len) return num
+  return (Array(len).join(0) + num).slice(-len)
+}
+
 /**
  * 数字转整数 如 100000 转为10万
  * @param {需要转化的数} num

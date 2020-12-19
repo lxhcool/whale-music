@@ -19,7 +19,7 @@ const AppHeader = memo(() => {
   }
 
   return (
-    <HeaderWrapper className="shadow header">
+    <HeaderWrapper className="header">
       <div className="container flex-row">
         <div className="logo">
           <NavLink to="/"></NavLink>

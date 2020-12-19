@@ -23,3 +23,17 @@ export function getNewAlbums() {
     url: "/album/newest",
   })
 }
+
+// 获取推荐新歌
+export function getNewSongs() {
+  return http({
+    url: "/personalized/newsong"
+  })
+}
+
+// 获取热门歌手
+export function getHotSingers() {
+  return http({
+    url: "/top/artists?offset=0&limit=30"
+  })
+}

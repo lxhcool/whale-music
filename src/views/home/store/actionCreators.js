@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-import { getBanners, getRecommends, getNewAlbums } from '@/apis/services/home'
+import { getBanners, getRecommends, getNewAlbums, getNewSongs, getHotSingers } from '@/apis/services/home'
 
 // 获取 banner( 轮播图 )
 const changeBannerAction = res => ({
@@ -41,6 +41,34 @@ export const getHotAlbumAction = () => {
     getNewAlbums().then(res => {
       const list = res.albums.slice(0, 8) 
       dispatch(changeHotAlbumAction(list))
+    })
+  }
+}
+
+// 获取推荐新歌
+const changeHotSongAction = res => ({
+  type: actionTypes.GET_SONGS,
+  songs: res.result
+})
+
+export const getHotSongAction = () => {
+  return dispatch => {
+    getNewSongs().then(res => {
+      dispatch(changeHotSongAction(res))
+    })
+  }
+}
+
+// 获取推荐歌手
+const changeHotSingerAction = res => ({
+  type: actionTypes.GET_SINGERS,
+  singers: res.artists
+})
+
+export const getHotSingerAction = () => {
+  return dispatch => {
+    getHotSingers().then(res => {
+      dispatch(changeHotSingerAction(res))
     })
   }
 }

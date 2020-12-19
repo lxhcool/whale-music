@@ -4,7 +4,7 @@ import SongSheet from '@/components/song-sheet'
 import { getRecommendAction } from '../../store/actionCreators';
 
 import {
-  RecommendWrapper
+  RecommendSheetWrapper
 } from './style';
 
 const RecommendSheet = memo(() => {
@@ -20,10 +20,10 @@ const RecommendSheet = memo(() => {
   }, [dispatch])
   
   return (
-    <RecommendWrapper className="recommend-sheet">
+    <RecommendSheetWrapper className="recommend-sheet">
       <h2 className="title">推荐歌单</h2>
       <SongSheet list={ recommends } />
-    </RecommendWrapper>
+    </RecommendSheetWrapper>
   );
 });
 

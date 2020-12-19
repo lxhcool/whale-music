@@ -8,7 +8,6 @@ import {
 
 const SongAlbum = memo((props) => {
   const {list}  = props
-  console.log(list)
   return (
     <SongAlbumWrapper className="song-ablum">
       {
@@ -17,18 +16,21 @@ const SongAlbum = memo((props) => {
             <div className="item" key={item.id}>
               <div className="wrapper">
                 <div className="cover">
-                <Image src={imageSize(item.picUrl)} preview={false} 
-                  placeholder={
-                    <Image
-                      preview={false}
-                      src={defaultImg}
-                    />
-                  }
-                />
-                <div className="count">
-                  <i className="arrow"></i>
-                  <span>{item.size}首</span>
-                </div>
+                  <Image src={imageSize(item.picUrl)} preview={false} 
+                    placeholder={
+                      <Image
+                        preview={false}
+                        src={defaultImg}
+                      />
+                    }
+                  />
+                  <div className="count">
+                    <i className="arrow"></i>
+                    <span>{item.size}首</span>
+                  </div>
+                  <button title="播放" className="play flex-center">
+                    <i className="niceicon niceOutlined_Play"></i>
+                  </button>
                 </div>
               </div>
               <div className="info">

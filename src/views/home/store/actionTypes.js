@@ -1,3 +1,5 @@
 export const GET_BANNERS = "home/GET_BANNERS"
 export const GET_RECOMMENDS = "home/GET_RECOMMENDS"
 export const GET_ALBUMS = "home/GET_ALBUMS"
+export const GET_SONGS = "home/GET_SONGS"
+export const GET_SINGERS = "home/GET_SINGERS"

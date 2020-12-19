@@ -15,14 +15,14 @@ const RecommendAlbum = memo(() => {
 
   // 发送请求
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(getHotAlbumAction())
   }, [dispatch])
 
   return (
-    <RecommendAlbumWrapper className="recommend-music">
-      <h2 className="title">推荐新碟</h2>
+    <RecommendAlbumWrapper className="recommend-album">
+      <h2 className="title">新碟上架</h2>
       <SongAlbum list={ albums } />
     </RecommendAlbumWrapper>
   );
