@@ -1,8 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-
-// import { imageSize } from '@/utils/utils'
 import { getHotSingerAction } from '../../store/actionCreators';
+import SingerItem from '@/components/singer-item'
 
 import {
   RecommendSingerWrapper
@@ -22,7 +21,13 @@ const RecommendSinger = memo(() => {
   return (
     <RecommendSingerWrapper className="recommend-singer">
       <h2 className="title">热门歌手</h2>
-      {singers.length}
+      <ul className="singer-list">
+        {
+          singers.map(item => {
+            return <SingerItem key={ item.id } item={item} />
+          })
+        }        
+      </ul>
     </RecommendSingerWrapper>
   );
 });

@@ -4,7 +4,7 @@ export const FooterWrapper = styled.div`
   width: 100%;
   margin-top: 50px;
   .container {
-    padding: 20px 0;
+    padding: 15px 0;
     a {
       position: relative;
       border-radius: 50%;
@@ -20,7 +20,7 @@ export const FooterWrapper = styled.div`
     }
     .links {
       a {
-        margin-right: 15px;
+        margin-left: 15px;
       }
     }
   }

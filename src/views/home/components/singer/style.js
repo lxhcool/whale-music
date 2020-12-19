@@ -6,4 +6,10 @@ export const RecommendSingerWrapper = styled.div`
     margin-bottom: 15px;
     font-weight: bold;
   }
+  .singer-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin: 0 -15px 0;
+  }
 `
