@@ -9,7 +9,6 @@ export const SingerItemWrapper = styled.li`
     z-index: 2;
     padding-top: 100%;
     border-radius: 50%;
-    background-color: #d9d9d9;
     .ant-image {
       position: absolute;
       top: 0;
@@ -38,19 +37,12 @@ export const SingerItemWrapper = styled.li`
       }
     }
   }
-  .info {
+  .name {
     margin-top: 15px;
     text-align: center;
-    .name {
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 18px;
-      word-break: break-word;
-    }
-    .count {
-      font-size: 12px;
-      margin-top: 10px;
-      /* color: $color-theme; */
-    }
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    word-break: break-word;
   }
 `

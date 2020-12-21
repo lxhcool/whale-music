@@ -20,6 +20,7 @@ const SingerItem = memo((props) => {
           }
         />
       </div>
+      <p className="name">{item.name}</p>
     </SingerItemWrapper>
   );
 });
