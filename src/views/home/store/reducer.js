@@ -7,7 +7,8 @@ const defaultState = Map({
   recommends: [],
   albums: [],
   songs: [],
-  singers: []
+  singers: [],
+  mvs: []
 })
 
 function reducer(state = defaultState, action) {
@@ -22,6 +23,8 @@ function reducer(state = defaultState, action) {
       return state.set("songs", action.songs)
     case actionTypes.GET_SINGERS:
       return state.set("singers", action.singers)
+    case actionTypes.GET_MVS:
+      return state.set("mvs", action.mvs)
     default:
       return state
   }

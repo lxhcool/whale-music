@@ -6,4 +6,9 @@ export const RecommendSheetWrapper = styled.div`
     margin-bottom: 15px;
     font-weight: bold;
   }
+  .sheet-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
 `

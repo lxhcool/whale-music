@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import SongSheet from '@/components/song-sheet'
+import SheetItem from '@/components/sheet-item'
 import { getRecommendAction } from '../../store/actionCreators';
 
 import {
@@ -22,7 +22,13 @@ const RecommendSheet = memo(() => {
   return (
     <RecommendSheetWrapper className="recommend-sheet">
       <h2 className="title">推荐歌单</h2>
-      <SongSheet list={ recommends } />
+      <div className="sheet-list">
+        {
+          recommends.map(item => {
+            return <SheetItem key={ item.id } item={item} />
+          })
+        }  
+      </div>
     </RecommendSheetWrapper>
   );
 });

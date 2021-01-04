@@ -4,6 +4,7 @@ export const SingerItemWrapper = styled.li`
   padding: 0 15px 30px;
   flex: 0 0 10%;
   max-width: 10%;
+  cursor: pointer;
   .cover {
     position: relative;
     z-index: 2;

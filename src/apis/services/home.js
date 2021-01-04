@@ -37,3 +37,10 @@ export function getHotSingers() {
     url: "/top/artists?offset=0&limit=30"
   })
 }
+
+// 获取推荐MV
+export function getTopMvs() {
+  return http({
+    url: "/personalized/mv"
+  })
+}

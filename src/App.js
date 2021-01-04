@@ -6,6 +6,7 @@ import store from '@/store';
 
 import AppHeader from '@/components/header';
 import AppFooter from '@/components/footer';
+import PlayerBar from '@/components/player-bar';
 import { HashRouter } from 'react-router-dom';
 
 import { BackTop } from 'antd';
@@ -25,6 +26,7 @@ const App = memo(() => {
       <BackTop visibilityHeight={300} duration={800}>
         <img src={gotopImg} alt=""/>
       </BackTop>
+      <PlayerBar />
     </Provider>
   );
 });

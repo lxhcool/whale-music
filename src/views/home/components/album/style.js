@@ -6,4 +6,9 @@ export const RecommendAlbumWrapper = styled.div`
     margin-bottom: 15px;
     font-weight: bold;
   }
+  .album-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+  }
 `

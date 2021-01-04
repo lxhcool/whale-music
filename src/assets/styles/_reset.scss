@@ -287,6 +287,55 @@ hr {
   left: 0;
 }
 
+.ant-back-top {
+  z-index: 10000;
+}
+
+.ant-slider {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.ant-slider-rail {
+  height: 2px;
+}
+
+.ant-slider-track {
+  border-radius: 1px;
+  background: -webkit-gradient(linear,left top,right top,from(transparent),color-stop(20%,#ff410f));
+  background: -o-linear-gradient(left,transparent,#ff410f 20%);
+  background: linear-gradient(90deg,transparent,#ff410f 20%);
+  background-origin: content-box;
+  height: 2px;
+}
+
+.ant-slider:hover .ant-slider-track {
+  border-radius: 1px;
+  background: -webkit-gradient(linear,left top,right top,from(transparent),color-stop(20%,#ff410f));
+  background: -o-linear-gradient(left,transparent,#ff410f 20%);
+  background: linear-gradient(90deg,transparent,#ff410f 20%);
+  background-origin: content-box;
+}
+
+.ant-slider-step {
+  height: 2px;
+}
+
+.ant-slider-handle {
+  width: 12px;
+  height: 12px;
+  border: solid 2px #fa2800;
+  margin-top: -5px;
+}
+
+.ant-slider-handle.ant-tooltip-open,
+.ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open),
+.ant-slider-handle:focus {
+  border-color: #fa2800;
+  box-shadow: 0 0 0 5px rgba(244, 67, 54, 0.2);
+}
+
 @keyframes tips-open {
   0% {
     opacity: 0;

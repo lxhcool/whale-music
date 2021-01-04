@@ -81,6 +81,9 @@ export const RecommendSongWrapper = styled.div`
         }
         .info {
           flex: 1;
+          .left {
+            flex: 1;
+          }
           .name {
             font-size: 14px;
             font-weight: bold;
@@ -104,7 +107,7 @@ export const RecommendSongWrapper = styled.div`
         .duration {
           font-size: 14px;
           font-weight: bold;
-          margin-left: 80px;
+          margin-left: 30px;
         }
       }
       &.playing {

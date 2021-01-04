@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import { imageSize } from '@/utils/utils'
+import { imageSize, formatTime } from '@/utils/utils'
 import { getHotSongAction } from '../../store/actionCreators';
 
 import {
@@ -43,15 +43,18 @@ const RecommendSong = memo(() => {
                     <i className="niceicon nicebofang2 play-btn"></i>
                     <i className="niceicon nicezanting1 pause-btn"></i>
                   </div>
-                  <div className="info flex-between">
+                  <div className="info flex-row">
                     <div className="left">
                       <p className="name">{ item.name }</p>
                       <p className="flex-row author ellipsis">
-                        <span>一棵小葱戚琦</span>
+                        <span>{item.song.artists[0].name}</span>
                       </p>
                     </div>
+                    <p className="album">
+                      {item.song.album.name}
+                    </p>
                     <p className="duration transition">
-                      03:25
+                      {formatTime(item.song.duration)}
                     </p>
                   </div>
                 </div>

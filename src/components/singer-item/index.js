@@ -6,7 +6,6 @@ import { SingerItemWrapper } from './style'
 import defaultImg from '@/assets/images/default.png';
 
 const SingerItem = memo((props) => {
-  console.log(props)
   const { item } = props
   return (
     <SingerItemWrapper>

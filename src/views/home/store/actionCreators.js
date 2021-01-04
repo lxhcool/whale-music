@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 
 import { getBanners, getRecommends, getNewAlbums, getNewSongs, getHotSingers } from '@/apis/services/home'
+import { getTopMvs } from '../../../apis/services/home';
 
 // 获取 banner( 轮播图 )
 const changeBannerAction = res => ({
@@ -69,6 +70,20 @@ export const getHotSingerAction = () => {
   return dispatch => {
     getHotSingers().then(res => {
       dispatch(changeHotSingerAction(res))
+    })
+  }
+}
+
+// 获取推荐MV
+const changeTopMvAction = res => ({
+  type: actionTypes.GET_MVS,
+  mvs: res.result
+})
+
+export const getTopMvAction = () => {
+  return dispatch => {
+    getTopMvs().then(res => {
+      dispatch(changeTopMvAction(res))
     })
   }
 }
