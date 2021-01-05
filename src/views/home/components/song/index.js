@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import { imageSize, formatTime } from '@/utils/utils'
+import { imageSize, formatSecondTime } from '@/utils/utils'
 import { getHotSongAction } from '../../store/actionCreators';
 
 import {
@@ -14,7 +14,7 @@ const RecommendSong = memo(() => {
     songs: state.getIn(["home", "songs"])
   }), shallowEqual)
 
-
+  console.log(songs)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getHotSongAction())
@@ -31,7 +31,7 @@ const RecommendSong = memo(() => {
                 <div className="wrapper flex-center">
                   <div className="index-container flex-center">
                     <div className="cover">
-                      <img className="cover-img" src={imageSize(item.picUrl)} alt=""/>
+                      <img className="cover-img" src={imageSize(item.image)} alt=""/>
                     </div>
                     <div className="play-icon">
                       <div className="line" style={{animationDelay: "-1.2s"}}></div>
@@ -47,14 +47,14 @@ const RecommendSong = memo(() => {
                     <div className="left">
                       <p className="name">{ item.name }</p>
                       <p className="flex-row author ellipsis">
-                        <span>{item.song.artists[0].name}</span>
+                        <span>{item.singer}</span>
                       </p>
                     </div>
-                    <p className="album">
+                    {/* <p className="album">
                       {item.song.album.name}
-                    </p>
+                    </p> */}
                     <p className="duration transition">
-                      {formatTime(item.song.duration)}
+                      {formatSecondTime(item.duration)}
                     </p>
                   </div>
                 </div>

@@ -20,7 +20,6 @@ export const RecommendMvWrapper = styled.div`
         z-index: 2;
         padding-top: 48%;
         border-radius: 4px;
-        background-color: #000;
         .cover-img {
           position: absolute;
           top: 0;

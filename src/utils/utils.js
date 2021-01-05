@@ -44,6 +44,12 @@ export const imageBlur = (imgUrl)  => {
   return `${imgUrl}?param=80y80&imageView&blur=40x20`
 }
 
+// 获取歌曲播放链接
+export const getSongUrl = id => {
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+}
+
+
 // 格式化时间毫秒转分秒
 export const formatTime = (time) => {
   // 取整
@@ -65,4 +71,29 @@ export const formatTime = (time) => {
     formatTime = m + ':' + s
   }
   return formatTime
+}
+
+// 转换成秒
+export const formatSecond = (time) => {
+  // 取整
+  time = ~~time
+  var secondTime
+  if (time < 10) {
+    secondTime = '00:0' + time
+  } else if (time < 60) {
+    secondTime = '00:' + time
+  } else {
+    var m = ~~parseInt((time % (1000 * 60 * 60)) / (1000 * 60))
+    var s = ~~parseInt((time % (1000 * 60)) / 1000)
+    secondTime = Number(m * 60 + s)
+  }
+  return secondTime
+}
+
+// 秒转00:00
+export const formatSecondTime = (interval) => {
+  interval = interval | 0
+  const m = (interval / 60) | 0
+  const s = interval % 60
+  return `${formatZero(m, 2)}:${formatZero(s, 2)}`
 }

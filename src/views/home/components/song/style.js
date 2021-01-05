@@ -108,6 +108,12 @@ export const RecommendSongWrapper = styled.div`
           font-size: 14px;
           font-weight: bold;
           margin-left: 30px;
+          &:after {
+            content: '';
+            width:1px;
+            height: 8px;
+            background: #333;
+          }
         }
       }
       &.playing {

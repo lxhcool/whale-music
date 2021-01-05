@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PlayerBarWrapper = styled.div `
   width: 100%;
   height: 72px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   position: fixed;
   bottom: 0;
   right: 0;
@@ -16,36 +16,12 @@ export const PlayerBarWrapper = styled.div `
     height: 100%;
     margin: 0 -5px;
     position: relative;
-    .left {
-      .cover {
-        width: 72px;
-        height: 72px;
-      }
-      .info {
-        margin-left: 15px;
-        .name {
-          font-size: 14px;
-          font-weight: bold;
-          margin-bottom: 10px;
-        }
-        .singer {
-          font-size: 12px;
-          color: #888888;
-        }
-      }
-    }
-    .center {
-      width: 700px;
-      height: 72px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .left {     
+      margin-right: 20px; 
       .player-btn {
         height: 40px;
         display: flex;
         align-items: center;
-        /* overflow: hidden; */
         i {
           cursor: pointer;
           &:active {
@@ -53,39 +29,89 @@ export const PlayerBarWrapper = styled.div `
           }
         }
         .icon-prev {
-          font-size: 40px;
-          margin-top: 3px;
+          font-size: 20px;
+          color: #fa2800;
         }
         .icon-play {
-          font-size: 60px;
-          margin: 3px 10px 0;
+          width: 43px;
+          height: 43px;
+          background: linear-gradient(90deg, #fa2800, #f95124 50%);
+          border-radius: 50%;
+          margin: 0 26px;
+          i {
+            font-size: 22px;
+            color: #ffffff;
+          }
         }
         .icon-next {
-          font-size: 40px;
-          margin-top: 3px;
+          font-size: 20px;
+          color: #fa2800;
         }
-      }    
+      }
+    }
+    .center {
+      height: 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      .cover {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .info {
+        width: 100%;
+        margin: 0 20px 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 72px;
+        .name {
+          font-size: 13px;
+          font-weight: bold;
+          margin-right: 10px;
+          span {
+            font-size: 12px;
+            color: #888888;
+            font-weight: 200;
+          }
+        }
+      }
+      .progress-wrap {
+        width: 100%;
+        span {
+          font-size: 14px;
+        }
+        .ant-slider {
+          margin: 15px 5px 0 5px;
+        }
+      }
     }
     .right {
       height: 72px;
       .volume-icon {
-        font-size: 24px;
+        font-size: 23px;
         font-weight: 700;
         cursor: pointer;
         margin-right: 10px;
       }
       .volume-wrap {
-        width: 160px;
+        width: 150px;
+        margin-right: 10px;
         .ant-slider {
           margin-top: 9px;
         }
       }
-    }
-    .progress-wrap {
-      width: 100%;
-      left: 0;
-      top: -1px;
-      position: absolute;
+      .tool {
+        i {
+          font-size: 26px;
+          margin: 0 10px;
+          cursor: pointer;
+        }
+      }
     }
   }
 `
