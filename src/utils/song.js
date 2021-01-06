@@ -1,6 +1,6 @@
 /** 歌曲处理 */
 
-import { formatSecond, getSongUrl } from './utils'
+import { getSongUrl } from './utils'
 
 export default class Song {
   constructor({
@@ -12,7 +12,10 @@ export default class Song {
     image,
     url,
     playCount,
-    score
+    score,
+    st,
+    fee,
+    cs
   }) {
     this.id = id
     this.singer = singer
@@ -23,6 +26,9 @@ export default class Song {
     this.url = url
     this.playCount = playCount
     this.score = score
+    this.st = st
+    this.fee = fee
+    this.cs = cs
   }
 }
 
@@ -32,13 +38,16 @@ export function createSong(musicData) {
     singer: filterSinger(musicData.ar || musicData.artists),
     name: musicData.name,
     album: musicData.al ? musicData.al.name : musicData.album.name,
-    duration: formatSecond(musicData.dt || musicData.duration),
+    duration: musicData.dt || musicData.duration,
     image: musicData.al
       ? musicData.al.picUrl
       : musicData.album.artist.img1v1Url,
     url: getSongUrl(musicData.id),
     playCount: musicData.playCount || '',
-    score: musicData.score || ''
+    score: musicData.score || '',
+    st: musicData.st,
+    fee: musicData.fee,
+    cs: musicData.cs
   })
 }
 

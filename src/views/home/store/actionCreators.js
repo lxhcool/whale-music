@@ -1,8 +1,7 @@
 import * as actionTypes from './actionTypes';
-import { createSong } from '@/utils/song'
 import { getBanners, getRecommends, getNewAlbums, getNewSongs, getHotSingers } from '@/apis/services/home'
+import { getSongDetails } from '@/utils/utils'
 import { getTopMvs } from '../../../apis/services/home';
-import { getSongDetail } from '../../../apis/services/player';
 
 // 获取 banner( 轮播图 )
 const changeBannerAction = res => ({
@@ -54,28 +53,12 @@ const changeHotSongAction = songs => ({
 })
 
 export const getHotSongAction = () => {
-  const timestamp = new Date().valueOf()
   return dispatch => {
-    getNewSongs().then(res => {
-      const list = res.result.map(item => {
-        return item.id
-      }).join(',')
-      getSongDetail(list, timestamp).then(res => {
-        dispatch(changeHotSongAction(_normalizeSongs(res.songs)))
-      })      
+    getNewSongs().then(async res => {
+      const songs = await getSongDetails(res.result)
+      dispatch(changeHotSongAction(songs))
     })
   }
-}
-
-// 处理歌曲
-const _normalizeSongs = (list) => {
-  let ret = []
-  list.forEach(item => {
-    if (item.id) {
-      ret.push(createSong(item))
-    }
-  })
-  return ret
 }
 
 // 获取推荐歌手

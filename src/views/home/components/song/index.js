@@ -1,7 +1,8 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import { imageSize, formatSecondTime } from '@/utils/utils'
+import { imageSize, formatTime } from '@/utils/utils'
 import { getHotSongAction } from '../../store/actionCreators';
+import { selectPlayAction } from '../../../player/store/actionCreators';
 
 import {
   RecommendSongWrapper
@@ -9,23 +10,28 @@ import {
 
 const RecommendSong = memo(() => {
 
+  // 发送请求
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getHotSongAction())
+  }, [dispatch])
+
   // 获取数据
   const { songs } = useSelector(state => ({
     songs: state.getIn(["home", "songs"])
   }), shallowEqual)
 
-  console.log(songs)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getHotSongAction())
-  }, [dispatch])
+  // 播放歌曲
+  const playSong = useCallback((item, index) => {    
+    dispatch(selectPlayAction(songs, index))
+  }, [dispatch, songs])
 
   return (
     <RecommendSongWrapper className="recommend-song">
       <h2 className="title">新歌推荐</h2>
       <div className="list">
         {
-          songs.map(item => {
+          songs.map((item, index) => {
             return (
               <div className="item" key={item.id}>
                 <div className="wrapper flex-center">
@@ -40,7 +46,7 @@ const RecommendSong = memo(() => {
                       <div className="line" style={{animationDelay: "-0.9s"}}></div>
                       <div className="line" style={{animationDelay: "-0.6s"}}></div>
                     </div>
-                    <i className="niceicon nicebofang2 play-btn"></i>
+                    <i className="niceicon nicebofang2 play-btn" onClick={() => playSong(item, index)}></i>
                     <i className="niceicon nicezanting1 pause-btn"></i>
                   </div>
                   <div className="info flex-row">
@@ -50,11 +56,8 @@ const RecommendSong = memo(() => {
                         <span>{item.singer}</span>
                       </p>
                     </div>
-                    {/* <p className="album">
-                      {item.song.album.name}
-                    </p> */}
                     <p className="duration transition">
-                      {formatSecondTime(item.duration)}
+                      {formatTime(item.duration)}
                     </p>
                   </div>
                 </div>

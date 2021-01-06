@@ -1,3 +1,6 @@
+import { createSong } from './song'
+import { getSongDetail } from '@/apis/services/player';
+
 // 补0方法
 export const formatZero = (num, len) => {
   if (String(num).length > len) return num
@@ -49,6 +52,56 @@ export const getSongUrl = id => {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }
 
+// 数组随机
+export const shuffle = arr => {
+  let _arr = arr.slice()
+  for (let i = 0; i < _arr.length; i++) {
+    let j = getRandomInt(0, i)
+    let t = _arr[i]
+    _arr[i] = _arr[j]
+    _arr[j] = t
+  }
+  return _arr
+}
+export const getRandomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+// 根据数组查找对应值
+export const findIndex = (list, song) => {
+  return list.findIndex(item => {
+    return item.id === song.id
+  })
+}
+
+// 获取歌曲详情
+export const getSongDetails = async (lists) => {
+  const timestamp = new Date().valueOf()
+  const list = lists.map(item => {
+    return item.id
+  }).join(',')
+  const newSongs = await getSongDetail(list, timestamp)  
+  newSongs.songs.map(item => (
+    newSongs.privileges.forEach(ytem => {
+      if(ytem.id === item.id) {
+        item.st = ytem.st
+        item.fee = ytem.fee
+        item.cs = ytem.cs
+      }
+    })
+  ))
+  return normalizeSongs(newSongs.songs)
+}
+// 处理歌曲
+export const normalizeSongs = list => {
+  let ret = []
+  list.forEach(item => {
+    if (item.id) {
+      ret.push(createSong(item))
+    }
+  })
+  return ret
+}
 
 // 格式化时间毫秒转分秒
 export const formatTime = (time) => {

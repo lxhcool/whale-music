@@ -1,41 +1,79 @@
-import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
+import React, { memo, useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import classNames from 'classnames'
 import { imageSize, formatTime, getSongUrl } from '@/utils/utils';
+import { playMode } from '@/common/playConfig'
 import { PlayerBarWrapper } from './style'
-
+import { selectPlayModeAction } from '../../views/player/store/actionCreators';
+import defaultCover from '@/assets/images/default-cover.png';
 import { Slider } from 'antd';
-import { getSongDetailAction } from '../../views/player/store/actionCreators';
 
 const AppFooter = memo(() => {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState('00:00');
   const [progress, setProgress] = useState(0);
   const [progressState, setProgressState] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const [isPlaying, setIsPlaying] = useState(false);
+  const [songReady, setSongReady] = useState(false);
+  const [volume, setVolume] = useState(0.5)
+  const [isMuted, setIsMuted] = useState(false)
   const audioRef = useRef();
+  const dispatch = useDispatch()
   // 获取数据
-  const { currentSong } = useSelector(state => ({
-    currentSong: state.getIn(["player", "currentSong"])
+  const { playList, currentSong, playingState, currentIndex, sequenceList, mode  } = useSelector(state => ({
+    currentSong: state.getIn(["player", "currentSong"]),
+    playList: state.getIn(["player", "playList"]),
+    playingState: state.getIn(["player", "playingState"]),
+    currentIndex: state.getIn(["player", "currentIndex"]),
+    sequenceList: state.getIn(["player", "sequenceList"]),
+    mode: state.getIn(["player", "playMode"])
   }), shallowEqual)
 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getSongDetailAction(1332662300));
-  }, [dispatch])
+  // 设置播放模式的图标
+  const modeIcon = useMemo(() => {
+    return mode === playMode.sequence
+      ? 'nicexunhuanbofang24'
+      : mode === playMode.loop
+      ? 'nicebofangqidanquxunhuan'
+      : 'nicebofangqisuijibofang'
+  }, [mode])
+
+  // 设置音量图标
+  const mutedIcon = useMemo(() => {
+    return isMuted ? 'nicejingyin1' : 'niceshengyin1'
+  }, [isMuted])
 
   useEffect(() => {
     audioRef.current.src = getSongUrl(currentSong.id)
   }, [currentSong])
 
-  const picUrl = currentSong.al && currentSong.al.picUrl
-  const singer = currentSong.ar && currentSong.ar[0].name
-  const duration = currentSong.dt
+  // 监听播放状态
+  useEffect(() => {
+    if (!songReady) {
+      return
+    }
+    playingState ? audioRef.current.play() : audioRef.current.pause()
+  }, [songReady, playingState])
+
+  const picUrl = currentSong.image || defaultCover
+  const name = currentSong.name || '未选择歌曲'
+  const singer = currentSong.singer || ''
+  const duration = currentSong.duration || '00:00'
+  console.log(duration)
+
+  // 歌曲播放准备完成
+  const audioReady = () => {
+    setSongReady(true)
+  }
 
   // 歌曲 播放/暂停
-  const togglePlaying = useCallback(() => {    
-    isPlaying ? audioRef.current.pause() : audioRef.current.play()
-    setIsPlaying(!isPlaying)
-  }, [isPlaying])
+  const togglePlaying = useCallback(() => {
+    if(!songReady) {
+      return
+    }
+
+    // playingState ? audioRef.current.pause() : audioRef.current.play()
+    // setIsPlaying(!isPlaying)
+  }, [songReady])
 
   // 监听歌曲播放时间改变
   const timeUpdate = (e) => {    
@@ -63,6 +101,39 @@ const AppFooter = memo(() => {
     }
   }, [duration, isPlaying, togglePlaying])
 
+  // 切换歌曲播放模式
+  const changeMode = () => {
+    const currentMode = (mode + 1) % 3
+    // const list = null;
+    dispatch(selectPlayModeAction(currentMode))    
+    // if(mode === playMode.random) {
+
+    // }
+  }
+
+  // 控制音量大小
+  const changeVolume = (e) => {
+    if (e === 0) {
+      setIsMuted(true)
+    } else {
+      setIsMuted(false)
+    }
+    const volume = e / 100
+    setVolume(volume)
+    audioRef.current.volume = volume
+  }
+
+  // 控制是否静音
+  const changeMuted = () => {
+    isMuted ? mutedHandle(false, 0.5) : mutedHandle(true, 0)
+  }
+  // 控制是否静音操作
+  const mutedHandle = (state, num) => {
+    setIsMuted(state)
+    setVolume(num)
+    audioRef.current.volume = num
+  }
+
   return (
     <PlayerBarWrapper className="player-bar shadow">
       <div className="container">
@@ -80,8 +151,8 @@ const AppFooter = memo(() => {
             <img className="cover" src={imageSize(picUrl)} alt=""/>
             <div className="info">
               <div className="top flex-between">
-                <h2 className="name">{currentSong.name} <span>（{singer}）</span> </h2>
-                <p className="time">{formatTime(currentTime)} / {formatTime(currentSong.dt)}</p>
+                <h2 className="name">{name} <span>{singer}</span> </h2>
+                <p className="time">{formatTime(currentTime)} / {formatTime(duration)}</p>
               </div>
               <div className="progress-wrap flex-row">
                 <Slider value={progress} onChange={ changeProgress } onAfterChange={ changeProgressAfter } />
@@ -90,11 +161,11 @@ const AppFooter = memo(() => {
           </div>
           <div className="right flex-row">
             <div className="volume-wrap flex-row">
-              <i className="niceicon volume-icon niceshengyin1"></i>
-              <Slider />
+              <i className={classNames(mutedIcon, "niceicon volume-icon")} onClick={changeMuted}></i>
+              <Slider value={volume * 100} onChange={ changeVolume } />
             </div>
             <div className="tool">
-              <i className="niceicon nicexunhuanbofang24"></i>
+              <i className={classNames(modeIcon, "niceicon")} onClick={changeMode}></i>
               <i className="niceicon nicegeci32"></i>
               <i className="niceicon nicebofangliebiao24"></i>
             </div>
@@ -102,7 +173,7 @@ const AppFooter = memo(() => {
           
         </div>
       </div>
-      <audio ref={audioRef} onTimeUpdate={ timeUpdate } />
+      <audio ref={audioRef} onPlaying={ audioReady } onTimeUpdate={ timeUpdate } muted={isMuted} volume={volume} />
     </PlayerBarWrapper>
   );
 });

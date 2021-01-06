@@ -77,6 +77,7 @@ export const PlayerBarWrapper = styled.div `
             font-size: 12px;
             color: #888888;
             font-weight: 200;
+            margin-left: 10px;
           }
         }
       }
