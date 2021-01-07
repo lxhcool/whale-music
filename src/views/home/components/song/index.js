@@ -1,8 +1,9 @@
 import React, { memo, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import classNames from 'classnames'
 import { imageSize, formatTime } from '@/utils/utils'
 import { getHotSongAction } from '../../store/actionCreators';
-import { selectPlayAction } from '../../../player/store/actionCreators';
+import { selectPlayAction, selectPlayState } from '../../../player/store/actionCreators';
 
 import {
   RecommendSongWrapper
@@ -17,14 +18,21 @@ const RecommendSong = memo(() => {
   }, [dispatch])
 
   // 获取数据
-  const { songs } = useSelector(state => ({
-    songs: state.getIn(["home", "songs"])
+  const { songs, currentSong, currentIndex, playingState } = useSelector(state => ({
+    songs: state.getIn(["home", "songs"]),
+    currentSong: state.getIn(["player", "currentSong"]),
+    currentIndex: state.getIn(["player", "currentIndex"]),
+    playingState: state.getIn(["player", "playingState"]),
   }), shallowEqual)
 
   // 播放歌曲
   const playSong = useCallback((item, index) => {    
     dispatch(selectPlayAction(songs, index))
   }, [dispatch, songs])
+
+  const pauseSong = useCallback(() => {
+    dispatch(selectPlayState(false))
+  }, [dispatch])
 
   return (
     <RecommendSongWrapper className="recommend-song">
@@ -33,7 +41,7 @@ const RecommendSong = memo(() => {
         {
           songs.map((item, index) => {
             return (
-              <div className="item" key={item.id}>
+              <div className={classNames({"playing": index === currentIndex && currentSong.id === item.id && playingState}, "item")} key={item.id}>
                 <div className="wrapper flex-center">
                   <div className="index-container flex-center">
                     <div className="cover">
@@ -47,7 +55,7 @@ const RecommendSong = memo(() => {
                       <div className="line" style={{animationDelay: "-0.6s"}}></div>
                     </div>
                     <i className="niceicon nicebofang2 play-btn" onClick={() => playSong(item, index)}></i>
-                    <i className="niceicon nicezanting1 pause-btn"></i>
+                    <i className="niceicon nicezanting1 pause-btn" onClick={pauseSong}></i>
                   </div>
                   <div className="info flex-row">
                     <div className="left">

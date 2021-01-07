@@ -67,6 +67,7 @@ export const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+
 // 根据数组查找对应值
 export const findIndex = (list, song) => {
   return list.findIndex(item => {

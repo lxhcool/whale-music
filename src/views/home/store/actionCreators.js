@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes';
 import { getBanners, getRecommends, getNewAlbums, getNewSongs, getHotSingers } from '@/apis/services/home'
 import { getSongDetails } from '@/utils/utils'
 import { getTopMvs } from '../../../apis/services/home';
+import { selectPlayList, selectCurrentIndex } from '../../player/store/actionCreators'
 
 // 获取 banner( 轮播图 )
 const changeBannerAction = res => ({
@@ -56,7 +57,10 @@ export const getHotSongAction = () => {
   return dispatch => {
     getNewSongs().then(async res => {
       const songs = await getSongDetails(res.result)
+      const list = changeHotSongAction(songs).songs
       dispatch(changeHotSongAction(songs))
+      dispatch(selectPlayList(list))
+      dispatch(selectCurrentIndex(0))
     })
   }
 }
