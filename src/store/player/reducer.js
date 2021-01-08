@@ -1,5 +1,5 @@
 import { Map } from 'immutable'
-import { playMode } from '@/common/playConfig'
+import { playMode } from '@/model/playConfig'
 import * as actionTypes from './actionTypes'
 
 const defaultState = Map({

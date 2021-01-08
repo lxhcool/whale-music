@@ -4,8 +4,8 @@ import { Slider } from 'antd';
 import classNames from 'classnames'
 import { PlayerBarWrapper } from './style'
 import { imageSize, formatTime } from '@/utils/utils';
-import { playMode } from '@/common/playConfig'
-import { selectPlayModeAction, selectPlayState, selectCurrentSong } from '../../views/player/store/actionCreators';
+import { playMode } from '@/model/playConfig'
+import { selectPlayModeAction, selectPlayState, selectCurrentSong } from '@/store/player/actionCreators';
 import defaultCover from '@/assets/images/default-cover.png';
 
 const AppFooter = memo(() => {

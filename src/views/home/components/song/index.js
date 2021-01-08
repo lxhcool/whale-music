@@ -2,8 +2,8 @@ import React, { memo, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import classNames from 'classnames'
 import { imageSize, formatTime } from '@/utils/utils'
-import { getHotSongAction } from '../../store/actionCreators';
-import { selectPlayAction, selectPlayState } from '../../../player/store/actionCreators';
+import { getHotSongAction } from '@/store/home/actionCreators';
+import { selectPlayAction, selectPlayState } from '@/store/player/actionCreators';
 
 import {
   RecommendSongWrapper

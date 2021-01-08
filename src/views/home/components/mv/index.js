@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { tranNumber } from "@/utils/utils"
-import { getTopMvAction } from '../../store/actionCreators';
+import { getTopMvAction } from '@/store/home/actionCreators';
 
 import {
   RecommendMvWrapper

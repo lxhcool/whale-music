@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getBannerAction } from '../../store/actionCreators'
+import { getBannerAction } from '@/store/home/actionCreators'
 import SwiperCore, { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/swiper.scss";

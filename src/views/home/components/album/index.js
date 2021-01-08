@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import AlbumItem from '@/components/album-item'
-import { getHotAlbumAction } from '../../store/actionCreators';
+import { getHotAlbumAction } from '@/store/home/actionCreators';
 import {
   RecommendAlbumWrapper
 } from './style';

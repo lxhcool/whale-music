@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import classNames from 'classnames'
-import { navLinks, userSelects } from '@/common/nav-data';
+import { navLinks, userSelects } from '@/model/nav-data';
 import useDarkMode from 'use-dark-mode';
 import { NavLink } from 'react-router-dom'
 

@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import { getRandomInt } from '@/utils/utils'
-import { playMode } from '@/common/playConfig'
+import { playMode } from '@/model/playConfig'
 
 // 设置播放列表
 const setPlayList = playList => ({

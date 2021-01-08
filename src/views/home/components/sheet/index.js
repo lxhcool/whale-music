@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import SheetItem from '@/components/sheet-item'
-import { getRecommendAction } from '../../store/actionCreators';
+import { getRecommendAction } from '@/store/home/actionCreators';
 
 import {
   RecommendSheetWrapper

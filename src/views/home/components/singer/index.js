@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
-import { getHotSingerAction } from '../../store/actionCreators';
+import { getHotSingerAction } from '@/store/home/actionCreators';
 import SingerItem from '@/components/singer-item'
 
 import {
