@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const BannerWrapper = styled.div`
   position: relative;
-  margin-top: 5px;
   .swiper-container {
     position: static;
   }

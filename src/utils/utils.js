@@ -1,3 +1,4 @@
+import qs from 'qs'
 import { createSong } from './song'
 import { getSongDetail } from '@/apis/services/player';
 
@@ -5,6 +6,24 @@ import { getSongDetail } from '@/apis/services/player';
 export const formatZero = (num, len) => {
   if (String(num).length > len) return num
   return (Array(len).join(0) + num).slice(-len)
+}
+
+// 日期格式化
+export const dateFormat = (str, type='YYYY-MM-DD') => {
+  let date = new Date(str)
+  let year = date.getFullYear()
+  let month = formatZero(date.getMonth() + 1, 2)
+  let day = formatZero(date.getDate(), 2)
+  let hour = formatZero(date.getHours(), 2)
+  let minute = formatZero(date.getMinutes(), 2)
+  let seconds = formatZero(date.getSeconds(), 2)
+  if (type === 'YYYY-MM-DD') {
+    return `${year}-${month}-${day}`
+  } else if (type === 'YYYY-MM-DD HH:MM:SS') {
+    return `${year}-${month}-${day} ${hour}:${minute}:${seconds}`
+  } else if (type === 'MM/DD  HH:MM:SS') {
+    return `${month}/${day} ${hour}:${minute}:${seconds}`
+  }
 }
 
 /**
@@ -93,6 +112,7 @@ export const getSongDetails = async (lists) => {
   ))
   return normalizeSongs(newSongs.songs)
 }
+
 // 处理歌曲
 export const normalizeSongs = list => {
   let ret = []
@@ -150,4 +170,9 @@ export const formatSecondTime = (interval) => {
   const m = (interval / 60) | 0
   const s = interval % 60
   return `${formatZero(m, 2)}:${formatZero(s, 2)}`
+}
+
+// 截取参数id
+export const getSearchId = (param) => {
+  return qs.parse(param.replace("?", ""))
 }

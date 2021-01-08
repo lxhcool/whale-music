@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { PlayerBarWrapper } from './style'
 import { imageSize, formatTime } from '@/utils/utils';
 import { playMode } from '@/model/playConfig'
-import { selectPlayModeAction, selectPlayState, selectCurrentSong } from '@/store/player/actionCreators';
+import { selectPlayMode, selectPlayState, selectCurrentSong } from '@/store/player/actionCreators';
 import defaultCover from '@/assets/images/default-cover.png';
 
 const AppFooter = memo(() => {
@@ -19,7 +19,7 @@ const AppFooter = memo(() => {
   const dispatch = useDispatch();
   
   // 获取数据
-  const { currentSong, playingState, mode  } = useSelector(state => ({
+  const { currentSong, playingState, mode, currentIndex } = useSelector(state => ({
     currentSong: state.getIn(["player", "currentSong"]),
     playList: state.getIn(["player", "playList"]),
     playingState: state.getIn(["player", "playingState"]),
@@ -64,11 +64,17 @@ const AppFooter = memo(() => {
 
   // 歌曲 播放/暂停
   const togglePlaying = useCallback(() => {
+    if (currentIndex === -1) {
+      return;
+    }
     dispatch(selectPlayState(!playingState))
-  }, [dispatch, playingState])
+  }, [dispatch, playingState, currentIndex])
 
   // 歌曲 上一首/下一首
   const changeSong = (state) => {
+    if (currentIndex === -1) {
+      return;
+    }
     dispatch(selectCurrentSong(state))
     dispatch(selectPlayState(true))
   }
@@ -110,7 +116,7 @@ const AppFooter = memo(() => {
   // 切换歌曲播放模式
   const changeMode = () => {
     const currentMode = (mode + 1) % 3
-    dispatch(selectPlayModeAction(currentMode))
+    dispatch(selectPlayMode(currentMode))
   }
 
   // 歌曲暂停
@@ -182,7 +188,7 @@ const AppFooter = memo(() => {
                 <p className="time">{formatTime(currentTime)} / {formatTime(duration)}</p>
               </div>
               <div className="progress-wrap flex-row">
-                <Slider value={progress} onChange={ changeProgress } onAfterChange={ changeProgressAfter } tipFormatter={ progressFormatter } />
+                <Slider value={progress} disabled={currentIndex === -1} onChange={ changeProgress } onAfterChange={ changeProgressAfter } tipFormatter={ progressFormatter } />
               </div>
             </div>     
           </div>

@@ -39,7 +39,7 @@ const setPlayMode = playMode => ({
 })
 
 // 点击单个播放
-export const selectPlayAction = (lists, index) => {
+export const selectPlay = (lists, index) => {
   return dispatch => {
     dispatch(setSequenceList(lists))
     dispatch(setPlayList(lists))
@@ -49,8 +49,18 @@ export const selectPlayAction = (lists, index) => {
   }
 }
 
+// 播放全部
+export const selectplayAll = (list) => {
+  // console.log(list)
+  // commit(types.SET_PLAY_MODE, playMode.sequence)
+  // commit(types.SET_SEQUENCE_LIST, list)
+  // commit(types.SET_PLAYLIST, list)
+  // commit(types.SET_CURRENT_INDEX, 0)
+  // commit(types.SET_PLAYING_STATE, true)
+}
+
 // 点击切换播放模式
-export const selectPlayModeAction = (mode) => {
+export const selectPlayMode = (mode) => {
   return (dispatch, getState) => {
     dispatch(setPlayMode(mode))
   }
@@ -107,13 +117,3 @@ export const selectPlayList = list => {
     dispatch(setPlayList(list))
   }
 }
-
-// // 播放全部
-// export const playAll = function({ commit }, { list }) {
-//   console.log(list)
-//   commit(types.SET_PLAY_MODE, playMode.sequence)
-//   commit(types.SET_SEQUENCE_LIST, list)
-//   commit(types.SET_PLAYLIST, list)
-//   commit(types.SET_CURRENT_INDEX, 0)
-//   commit(types.SET_PLAYING_STATE, true)
-// }

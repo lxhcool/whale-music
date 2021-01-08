@@ -3,7 +3,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import classNames from 'classnames'
 import { imageSize, formatTime } from '@/utils/utils'
 import { getHotSongAction } from '@/store/home/actionCreators';
-import { selectPlayAction, selectPlayState } from '@/store/player/actionCreators';
+import { selectPlay, selectPlayState } from '@/store/player/actionCreators';
 
 import {
   RecommendSongWrapper
@@ -27,7 +27,7 @@ const RecommendSong = memo(() => {
 
   // 播放歌曲
   const playSong = useCallback((item, index) => {    
-    dispatch(selectPlayAction(songs, index))
+    dispatch(selectPlay(songs, index))
   }, [dispatch, songs])
 
   const pauseSong = useCallback(() => {

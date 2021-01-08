@@ -107,6 +107,31 @@ export const SheetitemWrapper = styled.div `
           background-size: cover;
         }
       }
+      .play {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        cursor: pointer;
+        background-color: #fa2800;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        display: none;
+        i {
+          font-size: 15px;
+        }
+      }
+    }
+    &:hover {
+      .cover {
+        .play {
+          display: block;
+        }
+      }
     }
   }
   .info {
