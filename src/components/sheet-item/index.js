@@ -26,7 +26,7 @@ const SongSheet = memo((props) => {
 
   // 详情
   const toDetail = (id) => {
-    history.push(`/sheet-detail?id=${id}`)
+    history.push(`/sheet-detail?sheetId=${id}`)
   }
 
   return (

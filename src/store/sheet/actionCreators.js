@@ -19,7 +19,6 @@ const setSheetDetail = sheetDetail => ({
 export const getSheetDetail = (id, isPlay) => {
   return dispatch => {
     getPlayListDetail(id).then(async res => {
-      console.log(res)
       if(res.playlist.description !== null) {
         res.playlist.description = res.playlist.description.replace(
           /(\r\n|\n|\r)/gm,

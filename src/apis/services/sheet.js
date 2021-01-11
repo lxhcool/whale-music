@@ -4,6 +4,6 @@ import http from '../http';
 export function getPlayListDetail(id, s=100) {
   let timestamp = new Date().valueOf()
   return http({
-    url: `playlist/detail?id=${id}&s=${s}&timestamp=${timestamp}`
+    url: `/playlist/detail?id=${id}&s=${s}&timestamp=${timestamp}`
   })
 }
