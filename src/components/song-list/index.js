@@ -1,8 +1,15 @@
 import React, { memo } from 'react';
-
+import { useSelector, shallowEqual } from 'react-redux'
+import { formatZero, formatTime } from '@/utils/utils';
 import { SongListWrapper } from './style'
 
 const SongList = memo(() => {
+
+  // 获取数据
+  const { playList } = useSelector(state => ({
+    playList: state.getIn(["player", "playList"])
+  }), shallowEqual)
+  console.log(playList)
   return (
     <SongListWrapper>
       <div className="tool-head">
@@ -25,47 +32,53 @@ const SongList = memo(() => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div className="index-container flex-center">
-                <span className="num">01</span>
-                <div className="play-icon">
-                  <div className="line" style={{animationDelay: "-1.2s"}}></div>
-                  <div className="line"></div>
-                  <div className="line" style={{animationDelay: "-1.5s"}}></div>
-                  <div className="line" style={{animationDelay: "-0.9s"}}></div>
-                  <div className="line" style={{animationDelay: "-0.6s"}}></div>
-                </div>
-                <i className="niceicon nicebofang2 play-btn"></i>
-                <i className="niceicon nicezanting1 pause-btn"></i>
-              </div>
-            </td>
-            <td>
-              <div className="name-container">
-                <p className="name ellipsis" title="野心">野心</p>
-              </div>
-            </td>
-            <td>
-              <div className="artist-container">
-                <p className="author ellipsis" title="薛之谦">薛之谦</p>
-              </div>
-            </td>
-            <td>
-              <div className="album-container">
-                <p className="ellipsis" title="天外来物">天外来物</p>
-              </div>
-            </td>
-            <td>
-              <div className="duration-container">
-                <p>03:20</p>
-                <div className="song-tools">
-                  <i className="niceicon niceicon-heart" title="喜欢"></i>
-                  <i className="niceicon nicexiazai" title="下载"></i>
-                  <i className="niceicon nicedot" title="更多"></i>
-                </div>
-              </div>
-            </td>
-          </tr>
+          {
+            playList.length > 0 && playList.map((item, index) => {
+              return (
+                <tr>
+                  <td>
+                    <div className="index-container flex-center">
+                      <span className="num">{formatZero(index + 1, 2)}</span>
+                      <div className="play-icon">
+                        <div className="line" style={{animationDelay: "-1.2s"}}></div>
+                        <div className="line"></div>
+                        <div className="line" style={{animationDelay: "-1.5s"}}></div>
+                        <div className="line" style={{animationDelay: "-0.9s"}}></div>
+                        <div className="line" style={{animationDelay: "-0.6s"}}></div>
+                      </div>
+                      <i className="niceicon nicebofang2 play-btn"></i>
+                      <i className="niceicon nicezanting1 pause-btn"></i>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="name-container">
+                      <p className="name ellipsis" title={item.name}>{item.name}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="artist-container">
+                      <p className="author ellipsis" title={item.singer}>{item.singer}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="album-container">
+                      <p className="ellipsis" title={item.album}>{item.album}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="duration-container">
+                      <p>{formatTime(item.duration)}</p>
+                      <div className="song-tools">
+                        <i className="niceicon niceicon-heart" title="喜欢"></i>
+                        <i className="niceicon nicexiazai" title="下载"></i>
+                        <i className="niceicon nicedot" title="更多"></i>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              )
+            })
+          }
         </tbody>
       </table>
     </SongListWrapper>
