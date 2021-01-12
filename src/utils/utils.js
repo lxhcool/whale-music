@@ -110,7 +110,11 @@ export const getSongDetails = async (lists) => {
       }
     })
   ))
-  return normalizeSongs(newSongs.songs)
+  const newLists = normalizeSongs(newSongs.songs)
+  const filterList = newLists.filter(item => {
+    return item.fee !== 1 && item.st !== -200 && !item.cs
+  })
+  return filterList
 }
 
 // 处理歌曲

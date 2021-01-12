@@ -50,14 +50,11 @@ export const selectPlay = (lists, index) => {
 }
 
 // 播放全部
-export const selectplayAll = (list) => {
-  // console.log(list)
-  // commit(types.SET_PLAY_MODE, playMode.sequence)
-  // commit(types.SET_SEQUENCE_LIST, list)
-  // commit(types.SET_PLAYLIST, list)
-  // commit(types.SET_CURRENT_INDEX, 0)
-  // commit(types.SET_PLAYING_STATE, true)
-}
+// export const selectplayAll = (list) => {
+//   return (dispatch) => {
+//     dispatch(selectCurrentSong(1))
+//   }
+// }
 
 // 点击切换播放模式
 export const selectPlayMode = (mode) => {
@@ -84,7 +81,6 @@ export const selectCurrentIndex = index => {
 
 // 设置当前播放歌曲
 export const selectCurrentSong = tag => {
-  console.log(tag)
   return (dispatch, getState) => {
     const mode = getState().getIn(["player", "playMode"])
     const playList = getState().getIn(["player", "playList"])
@@ -108,6 +104,7 @@ export const selectCurrentSong = tag => {
     }
     dispatch(setCurrentSong(playList[currentIndex]))
     dispatch(setCurrentIndex(currentIndex))
+    dispatch(setPlayingState(true))
   }
 }
 

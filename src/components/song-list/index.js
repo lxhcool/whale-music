@@ -1,19 +1,45 @@
 import React, { memo } from 'react';
-import { useSelector, shallowEqual } from 'react-redux'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import classNames from 'classnames'
 import { formatZero, formatTime } from '@/utils/utils';
+import { selectCurrentSong, selectPlayState, selectPlay } from '@/store/player/actionCreators'
 import { SongListWrapper } from './style'
 
 const SongList = memo(() => {
 
+  const dispatch = useDispatch();
+
   // 获取数据
-  const { playList } = useSelector(state => ({
-    playList: state.getIn(["player", "playList"])
+  const { playList, currentSong, currentIndex, playingState } = useSelector(state => ({
+    playList: state.getIn(["player", "playList"]),
+    currentSong: state.getIn(["player", "currentSong"]),
+    currentIndex: state.getIn(["player", "currentIndex"]),
+    playingState: state.getIn(["player", "playingState"]),
   }), shallowEqual)
-  console.log(playList)
+
+  // 播放全部
+  const playAllSong = () => {
+    dispatch(selectCurrentSong(1))
+  }
+
+  // 播放歌曲
+  const playSong = (e, index) => {
+    e.stopPropagation()
+    dispatch(selectPlay(playList, index))
+  }
+
+  // 暂停播放
+  const pauseSong = () => {
+    dispatch(selectPlayState(false))
+  }
+
   return (
     <SongListWrapper>
       <div className="tool-head">
-        <div className="item play-item">
+        <div className="num">
+          
+        </div>
+        <div className="item play-item" onClick={playAllSong}>
           <i className="niceicon niceOutlined_Play"></i> 播放全部
         </div>
         <div className="item collect-item">
@@ -35,7 +61,7 @@ const SongList = memo(() => {
           {
             playList.length > 0 && playList.map((item, index) => {
               return (
-                <tr>
+                <tr className={classNames({"playing": index === currentIndex && currentSong.id === item.id && playingState})} key={item.id}>
                   <td>
                     <div className="index-container flex-center">
                       <span className="num">{formatZero(index + 1, 2)}</span>
@@ -46,8 +72,8 @@ const SongList = memo(() => {
                         <div className="line" style={{animationDelay: "-0.9s"}}></div>
                         <div className="line" style={{animationDelay: "-0.6s"}}></div>
                       </div>
-                      <i className="niceicon nicebofang2 play-btn"></i>
-                      <i className="niceicon nicezanting1 pause-btn"></i>
+                      <i className="niceicon nicebofang2 play-btn" onClick={(e) => playSong(e, index)}></i>
+                      <i className="niceicon nicezanting1 pause-btn" onClick={pauseSong}></i>
                     </div>
                   </td>
                   <td>
@@ -62,7 +88,7 @@ const SongList = memo(() => {
                   </td>
                   <td>
                     <div className="album-container">
-                      <p className="ellipsis" title={item.album}>{item.album}</p>
+                      <p className="ellipsis" title={item.album}>《{item.album}》</p>
                     </div>
                   </td>
                   <td>

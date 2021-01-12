@@ -5,8 +5,11 @@ export const SongListWrapper = styled.div`
   .tool-head {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     margin: 15px 0;
+    .num {
+      width: 100%;
+      flex: 1;
+    }
     .item {
       background: #f2f2f2;
       color: #333333;
