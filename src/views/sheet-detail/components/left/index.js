@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useSelector, shallowEqual } from 'react-redux'
 import { imageSize, dateFormat } from '@/utils/utils';
+import { Modal } from 'antd';
 import {
   SheetDetailLeftWrapper
 } from './style';
@@ -8,7 +9,7 @@ import {
 import SongList from '@/components/song-list'
 
 const SheetDetailLeft = memo(() => {
-
+  const [modal, setModal] = useState(false)
   // 获取数据
   const { sheetDetail } = useSelector(state => ({
     sheetDetail: state.getIn(["sheet", "sheetDetail"])
@@ -45,13 +46,25 @@ const SheetDetailLeft = memo(() => {
           </div>
           <div className="desc">
             <p className="ellipsis-two" dangerouslySetInnerHTML={{__html: sheetDetail.description}}></p>
-            <span>全部<i className="niceicon niceiconfontyoujiantou-copy-copy-copy-copy"></i></span>
+            <span onClick={() => setModal(true)}>全部<i className="niceicon niceiconfontyoujiantou-copy-copy-copy-copy"></i></span>
           </div>
         </div>
       </div>
       <div className="content">
         <SongList />
       </div>
+      <Modal
+        title={sheetDetail.name}
+        centered
+        visible={modal}
+        onOk={() => setModal(false)}
+        onCancel={() => setModal(false)}
+        width={430}
+        footer={null}
+        closeIcon={<i className="niceicon niceIcon_cloose" style={{fontSize: "22px"}}></i>}
+      >
+        <p dangerouslySetInnerHTML={{__html: sheetDetail.description}}></p>
+      </Modal>
     </SheetDetailLeftWrapper>
   );
 });

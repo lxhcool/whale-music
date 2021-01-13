@@ -1,6 +1,6 @@
 import * as actionTypes from '../player/actionTypes';
 import * as sheetActionTypes from './actionTypes';
-import { getPlayListDetail } from '@/apis/services/sheet';
+import { getPlayListDetail, getSubscribersPlaylist, getRelatedPlaylist, getCommentPlaylist } from '@/apis/services/sheet';
 import { getSongDetails } from '@/utils/utils';
 import { selectPlay, selectPlayList, selectCurrentIndex } from '../player/actionCreators'
 
@@ -16,6 +16,25 @@ const setSheetDetail = sheetDetail => ({
   sheetDetail
 })
 
+// 获取歌单收藏者
+const setSheetSubscribers = subscribers => ({
+  type: sheetActionTypes.GET_PLAYLIST_SUBSCRIBERS,
+  subscribers
+})
+
+// 获取相关歌单推荐
+const setSheetRelated = relateds => ({
+  type: sheetActionTypes.GET_PLAYLIST_RELATEDS,
+  relateds
+})
+
+// 获取歌单评论
+const setSheetComments = comments => ({
+  type: sheetActionTypes.GET_PLAYLIST_COMMENTS,
+  comments
+})
+
+// 请求歌单详情
 export const getSheetDetail = (id, isPlay) => {
   return dispatch => {
     getPlayListDetail(id).then(async res => {
@@ -46,3 +65,36 @@ export const getSheetDetail = (id, isPlay) => {
     })
   }
 }
+
+// 获取歌单收藏者
+export const getSheetSubscribers = (id) => {
+  return dispatch => {
+    getSubscribersPlaylist(id).then(res => {
+      dispatch(setSheetSubscribers(res.subscribers))
+    })
+  }
+}
+
+// 获取相关歌单推荐
+export const getSheetRelateds  = id => {
+  return dispatch => {
+    getRelatedPlaylist(id).then(res => {
+      dispatch(setSheetRelated(res.playlists))
+    })
+  }
+}
+
+// 获取歌单评论
+export const getSheetComments = id => {
+  return dispatch => {
+    getCommentPlaylist(id).then(res => {
+      let comments = []
+      if (res.hotComments.length > 0) {
+        comments = res.hotComments
+      } else {
+        comments = res.comments
+      }
+      dispatch(setSheetComments(comments))
+    })    
+  }
+} 

@@ -80,7 +80,7 @@ export const selectCurrentIndex = index => {
 }
 
 // 设置当前播放歌曲
-export const selectCurrentSong = tag => {
+export const selectCurrentSong = (tag, isAll = false) => {
   return (dispatch, getState) => {
     const mode = getState().getIn(["player", "playMode"])
     const playList = getState().getIn(["player", "playList"])
@@ -101,6 +101,9 @@ export const selectCurrentSong = tag => {
       if (currentIndex < 0) {
         currentIndex = playList.length - 1
       }
+    }
+    if(isAll) {
+      currentIndex = 0
     }
     dispatch(setCurrentSong(playList[currentIndex]))
     dispatch(setCurrentIndex(currentIndex))

@@ -19,7 +19,7 @@ const SongList = memo(() => {
 
   // 播放全部
   const playAllSong = () => {
-    dispatch(selectCurrentSong(1))
+    dispatch(selectCurrentSong(1, true))
   }
 
   // 播放歌曲
@@ -36,9 +36,6 @@ const SongList = memo(() => {
   return (
     <SongListWrapper>
       <div className="tool-head">
-        <div className="num">
-          
-        </div>
         <div className="item play-item" onClick={playAllSong}>
           <i className="niceicon niceOutlined_Play"></i> 播放全部
         </div>
