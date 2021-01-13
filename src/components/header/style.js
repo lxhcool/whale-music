@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
+  backdrop-filter: blur(5px);
   .logo {
     width: 146px;
     display: flex;
