@@ -115,7 +115,7 @@ export const SheetitemWrapper = styled.div `
         border-radius: 50%;
         color: #fff;
         cursor: pointer;
-        background-color: #fa2800;
+        background-color: #4b57ff;
         position: absolute;
         top: 50%;
         left: 50%;

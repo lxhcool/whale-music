@@ -32,6 +32,11 @@ td {
   padding: 0;
 }
 
+@font-face {
+  font-family: 'Cantarell';
+  src: url('../fonts/Cantarell-Regular.ttf');
+}
+
 body,
 html {
   margin: 0;
@@ -43,6 +48,7 @@ html {
   font-size: 13px;
   width: 100%;
   height: 100%;
+  font-family: Cantarell,PingFang SC,Hiragino Sans GB,Microsoft YaHei,STHeiti,WenQuanYi Micro Hei,Helvetica,Arial,sans-serif;
 }
 
 * {
@@ -303,18 +309,18 @@ hr {
 
 .ant-slider-track {
   border-radius: 1px;
-  background: -webkit-gradient(linear,left top,right top,from(transparent),color-stop(20%,#ff410f));
-  background: -o-linear-gradient(left,transparent,#ff410f 20%);
-  background: linear-gradient(90deg,transparent,#ff410f 20%);
+  background: -webkit-gradient(linear,left top,right top,from(transparent),color-stop(20%,#4b57ff));
+  background: -o-linear-gradient(left,transparent,#4b57ff 20%);
+  background: linear-gradient(90deg,transparent,#4b57ff 20%);
   background-origin: content-box;
   height: 2px;
 }
 
 .ant-slider:hover .ant-slider-track {
   border-radius: 1px;
-  background: -webkit-gradient(linear,left top,right top,from(transparent),color-stop(20%,#ff410f));
-  background: -o-linear-gradient(left,transparent,#ff410f 20%);
-  background: linear-gradient(90deg,transparent,#ff410f 20%);
+  background: -webkit-gradient(linear,left top,right top,from(transparent),color-stop(20%,#4b57ff));
+  background: -o-linear-gradient(left,transparent,#4b57ff 20%);
+  background: linear-gradient(90deg,transparent,#4b57ff 20%);
   background-origin: content-box;
 }
 
@@ -325,15 +331,15 @@ hr {
 .ant-slider-handle {
   width: 12px;
   height: 12px;
-  border: solid 2px #fa2800;
+  border: solid 2px #4b57ff;
   margin-top: -5px;
 }
 
 .ant-slider-handle.ant-tooltip-open,
 .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open),
 .ant-slider-handle:focus {
-  border-color: #fa2800;
-  box-shadow: 0 0 0 5px rgba(244, 67, 54, 0.2);
+  border-color: #4b57ff;
+  box-shadow: 0 0 0 5px rgba(148, 9, 255, 0.2);
 }
 
 .ant-modal-header {

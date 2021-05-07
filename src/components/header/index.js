@@ -1,22 +1,12 @@
 import React, { memo, useState } from 'react';
 import classNames from 'classnames'
 import { navLinks, userSelects } from '@/model/nav-data';
-import useDarkMode from 'use-dark-mode';
 import { NavLink } from 'react-router-dom'
-
 import { HeaderWrapper, SearchBox } from './style'
 
 const AppHeader = memo(() => {
   const [searchPop, setSearchPop] = useState('')
-  const theme = useDarkMode(false);
   const isLogin = false;
-  const changeTheme = () => {
-    if(theme.value) {
-      theme.disable()
-    } else {
-      theme.enable()
-    }
-  }
 
   return (
     <HeaderWrapper className="header">
@@ -38,9 +28,6 @@ const AppHeader = memo(() => {
         <div className="tool">
           <span className="icon" onClick={() => {setSearchPop(true)}}>
             <i className="niceicon nicesousuo search-icon" title="搜索"></i>            
-          </span>
-          <span className="icon" onClick={() => {changeTheme()}}>
-            <i className={classNames({"dark": theme.value},"niceicon niceheiye theme-icon")} title="黑白"></i>            
           </span>
         </div>
         {

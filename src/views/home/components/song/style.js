@@ -63,7 +63,7 @@ export const RecommendSongWrapper = styled.div`
             }
           }
           .play-btn {
-            color: #fa2800;
+            color: #4b57ff;
             font-size: 30px;
             display: none;
             text-align: left;
@@ -71,7 +71,7 @@ export const RecommendSongWrapper = styled.div`
             cursor: pointer;
           }
           .pause-btn {
-            color: #fa2800;
+            color: #4b57ff;
             font-size: 32px;
             display: none;
             position: relative;
@@ -118,10 +118,10 @@ export const RecommendSongWrapper = styled.div`
       }
       &.playing {
         p {
-          color: #fa2800;
+          color: #4b57ff;
         }
         i {
-          color: #fa2800;
+          color: #4b57ff;
         }
         .index-container {
           .cover {

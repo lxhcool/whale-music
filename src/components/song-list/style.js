@@ -25,12 +25,12 @@ export const SongListWrapper = styled.div`
         font-size: 18px;
       }
       &.active {
-        background: #fa2800;
+        background: #4b57ff;
         color: #fff;
       }
     }
     .play-item {
-      background: #fa2800;
+      background: #4b57ff;
       color: #fff;
       i {
         margin-left: -2px;
@@ -106,14 +106,14 @@ export const SongListWrapper = styled.div`
             }
           }
           .play-btn {
-            color: #fa2800;
+            color: #4b57ff;
             font-size: 28px;
             display: none;
             text-align: left;
             cursor: pointer;
           }
           .pause-btn {
-            color: #fa2800;
+            color: #4b57ff;
             font-size: 30px;
             display: none;
             text-align: left;
@@ -148,10 +148,10 @@ export const SongListWrapper = styled.div`
         }
         &.playing {
           p {
-            color: #fa2800;
+            color: #4b57ff;
           }
           i {
-            color: #fa2800;
+            color: #4b57ff;
           }
           .index-container {
             .num {

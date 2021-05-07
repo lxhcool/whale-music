@@ -67,7 +67,7 @@ export const SheetDetailLeftWrapper = styled.div`
           margin-right: 20px;
           cursor: pointer;
           &:hover {
-            color: #fa2800;
+            color: #4b57ff;
           }
         }
         .createTime {
@@ -78,7 +78,7 @@ export const SheetDetailLeftWrapper = styled.div`
       .tag {
         span {
           color: #fff;
-          background: #fa2800;
+          background: #4b57ff;
           margin-right: 10px;
           margin-left: 5px;
           font-size: 12px;
@@ -103,7 +103,7 @@ export const SheetDetailLeftWrapper = styled.div`
         width: 100%;       
         span {
           flex-shrink: 0;
-          color: #fa2800;
+          color: #4b57ff;
           line-height: 1.38;
           cursor: pointer;
         }

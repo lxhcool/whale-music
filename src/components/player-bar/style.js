@@ -11,6 +11,7 @@ export const PlayerBarWrapper = styled.div `
   z-index: 20;
   padding: 0 10px 0 20px;
   justify-content: space-between;
+  padding-left: calc(100vw - 100%);
   .wrapper {
     align-items: center;
     height: 100%;
@@ -30,12 +31,12 @@ export const PlayerBarWrapper = styled.div `
         }
         .icon-prev {
           font-size: 20px;
-          color: #fa2800;
+          color: #4b57ff;
         }
         .icon-play {
           width: 43px;
           height: 43px;
-          background: linear-gradient(90deg, #fa2800, #f95124 50%);
+          background: linear-gradient(110deg, #816bff, #9c51ff);
           border-radius: 50%;
           margin: 0 26px;
           i {
@@ -45,7 +46,7 @@ export const PlayerBarWrapper = styled.div `
         }
         .icon-next {
           font-size: 20px;
-          color: #fa2800;
+          color: #4b57ff;
         }
       }
     }

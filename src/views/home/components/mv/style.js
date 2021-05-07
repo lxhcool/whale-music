@@ -92,7 +92,7 @@ export const RecommendMvWrapper = styled.div`
             line-height: 28px;
             border-radius: 50%;
             color: #fff;            
-            background-color: #fa2800;
+            background-color: #4b57ff;
             font-size: 15px;
           }
         }

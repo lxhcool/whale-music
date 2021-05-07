@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import logo from '@/assets/images/logo.png';
 import searchBg from '@/assets/images/personal.jpg';
 import closeLight from '@/assets/images/close.svg';
 import closeDark from '@/assets/images/close-dark.svg';
@@ -11,7 +12,7 @@ export const HeaderWrapper = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
-  backdrop-filter: blur(5px);
+  background: #ffffff;
   .logo {
     width: 146px;
     display: flex;
@@ -21,6 +22,7 @@ export const HeaderWrapper = styled.div`
       width: 100%;
       display: block;
       height: 64px;
+      background-image: url(${logo});
       background-position: 0;
       background-repeat: no-repeat;
       background-size: 146px 26px;
@@ -39,8 +41,12 @@ export const HeaderWrapper = styled.div`
         align-items: center;
         height: 100%;
         transition: all 0.4s;
+        &:hover {
+          color: #4b57ff;
+        }
       }
       .active {
+        color: #4b57ff;
         &::after {
           content: "";
           position: absolute;
@@ -52,6 +58,7 @@ export const HeaderWrapper = styled.div`
           border-radius: 50%;
           margin: 0 auto;
           opacity: 1;
+          background: #4b57ff;
         }
       }
     }
@@ -151,7 +158,7 @@ export const SearchBox = styled.div`
     position: absolute;
     opacity: 0;
     transition: opacity .3s;
-    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     transition-duration: .3s;
   }
   .search-body {
@@ -252,7 +259,7 @@ export const SearchBox = styled.div`
             color: #333;
           }
           p {
-            color: #fa2800;
+            color: #4b57ff;
             cursor: pointer;
           }
         }
@@ -294,7 +301,7 @@ export const SearchBox = styled.div`
                 opacity: 0.7;
               }
               &:hover {
-                color: #161E27;
+                color: #4b57ff;
                 .close-dark {
                   opacity: 1;
                 }

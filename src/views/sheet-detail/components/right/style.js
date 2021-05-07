@@ -18,7 +18,7 @@ export const SheetDetailRightWrapper = styled.div`
       width: 2px;
       height: 13px;
       border-radius: 2px;
-      background: #fa2800;
+      background: #4b57ff;
       margin-right: 10px;
     }
   }
@@ -80,7 +80,7 @@ export const SheetDetailRightWrapper = styled.div`
           }
           &:hover {
             h2 {
-              color: #fa2800;
+              color: #4b57ff;
             }
           }
         }
